@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birecik - Menü</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a472a;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent-color);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .brand-line {
+            width: 200px;
+            height: 2px;
+            background-color: #d4af37;
+            margin: 10px auto;
+        }
+
+        .specialties {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: white;
+        }
+
+        .menu-categories {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            scrollbar-width: none;
+            position: sticky;
+            top: 0;
+            background-color: #1a472a;
+            z-index: 100;
+        }
+
+        .menu-categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .category-button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .menu-section {
+            margin-bottom: 3rem;
+        }
+
+        .menu-section h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .menu-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item h3 {
+            margin: 0;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                position: static;
+                transform: none;
+                margin-bottom: 20px;
+            }
+
+            .menu-categories {
+                padding: 0.5rem;
+            }
+
+            .category-button {
+                padding: 8px 15px;
+                font-size: 1rem;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .menu-item img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .price {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">← Geri</a>
+            <h1>Birecik</h1>
+            <div class="brand-line"></div>
+            <p class="specialties">Menü</p>
+        </header>
+
+        <div class="menu-categories">
+            <button class="category-button" onclick="scrollToSection('breakfast')">Kahvaltı</button>
+            <button class="category-button" onclick="scrollToSection('soups')">Çorbalar</button>
+            <button class="category-button" onclick="scrollToSection('main-dishes')">Ana Yemekler</button>
+            <button class="category-button" onclick="scrollToSection('appetizers')">Ara Sıcaklar</button>
+            <button class="category-button" onclick="scrollToSection('desserts')">Tatlılar</button>
+            <button class="category-button" onclick="scrollToSection('salads')">Salatalar</button>
+            <button class="category-button" onclick="scrollToSection('mezes')">Mezeler</button>
+            <button class="category-button" onclick="scrollToSection('beverages')">İçecekler</button>
+        </div>
+
+        <div id="breakfast" class="menu-section">
+            <h2>Kahvaltı</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/menemen.jpg" alt="Menemen">
+                    <div class="menu-item-info">
+                        <h3>Menemen</h3>
+                        <p>Domates, biber, soğan ve yumurta ile hazırlanan geleneksel kahvaltı lezzeti</p>
+                    </div>
+                    <div class="price">₺45</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/sucuklu-yumurta.jpg" alt="Sucuklu Yumurta">
+                    <div class="menu-item-info">
+                        <h3>Sucuklu Yumurta</h3>
+                        <p>Özel sucuk ve taze yumurta ile hazırlanan nefis kahvaltı</p>
+                    </div>
+                    <div class="price">₺40</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/serpme.jpg" alt="Serpme Kahvaltı">
+                    <div class="menu-item-info">
+                        <h3>Serpme Kahvaltı</h3>
+                        <p>Peynir çeşitleri, zeytin, bal, kaymak, reçel, yumurta ve daha fazlası</p>
+                    </div>
+                    <div class="price">₺120</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="soups" class="menu-section">
+            <h2>Çorbalar</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/mercimek.jpg" alt="Mercimek Çorbası">
+                    <div class="menu-item-info">
+                        <h3>Mercimek Çorbası</h3>
+                        <p>Geleneksel tarifle hazırlanan nefis mercimek çorbası</p>
+                    </div>
+                    <div class="price">₺35</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/iskembe.jpg" alt="İşkembe Çorbası">
+                    <div class="menu-item-info">
+                        <h3>İşkembe Çorbası</h3>
+                        <p>Özel baharatlarla hazırlanan geleneksel işkembe çorbası</p>
+                    </div>
+                    <div class="price">₺40</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/ezogelin.jpg" alt="Ezogelin Çorbası">
+                    <div class="menu-item-info">
+                        <h3>Ezogelin Çorbası</h3>
+                        <p>Mercimek, bulgur ve özel baharatlarla hazırlanan geleneksel çorba</p>
+                    </div>
+                    <div class="price">₺35</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-dishes" class="menu-section">
+            <h2>Ana Yemekler</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/urfa-kebap.jpg" alt="Urfa Kebabı">
+                    <div class="menu-item-info">
+                        <h3>Urfa Kebabı</h3>
+                        <p>Özel baharatlarla hazırlanan, acısız Urfa usulü kebap</p>
+                    </div>
+                    <div class="price">₺120</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/adana-kebap.jpg" alt="Adana Kebabı">
+                    <div class="menu-item-info">
+                        <h3>Adana Kebabı</h3>
+                        <p>Acılı ve özel baharatlarla hazırlanan Adana usulü kebap</p>
+                    </div>
+                    <div class="price">₺110</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/lahmacun.jpg" alt="Lahmacun">
+                    <div class="menu-item-info">
+                        <h3>Lahmacun</h3>
+                        <p>İnce hamur üzerine kıymalı harç ile hazırlanan geleneksel lezzet</p>
+                    </div>
+                    <div class="price">₺45</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="appetizers" class="menu-section">
+            <h2>Ara Sıcaklar</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/patlican-kebap.jpg" alt="Patlıcan Kebabı">
+                    <div class="menu-item-info">
+                        <h3>Patlıcan Kebabı</h3>
+                        <p>Özel baharatlarla marine edilmiş patlıcan ve kıyma ile hazırlanan nefis lezzet</p>
+                    </div>
+                    <div class="price">₺85</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/tavuk-sis.jpg" alt="Tavuk Şiş">
+                    <div class="menu-item-info">
+                        <h3>Tavuk Şiş</h3>
+                        <p>Özel marine sosu ile hazırlanan, yumuşak ve lezzetli tavuk şiş</p>
+                    </div>
+                    <div class="price">₺75</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="desserts" class="menu-section">
+            <h2>Tatlılar</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/kunefe.jpg" alt="Künefe">
+                    <div class="menu-item-info">
+                        <h3>Künefe</h3>
+                        <p>Özel kadayıf ve peynir ile hazırlanan, fıstıklı geleneksel tatlı</p>
+                    </div>
+                    <div class="price">₺65</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/katmer.jpg" alt="Katmer">
+                    <div class="menu-item-info">
+                        <h3>Katmer</h3>
+                        <p>İnce açılmış hamur, kaymak ve fıstık ile hazırlanan geleneksel tatlı</p>
+                    </div>
+                    <div class="price">₺60</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/sutlac.jpg" alt="Sütlaç">
+                    <div class="menu-item-info">
+                        <h3>Sütlaç</h3>
+                        <p>Fırında pişirilmiş, karamelize üzeri ile geleneksel sütlü tatlı</p>
+                    </div>
+                    <div class="price">₺35</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="salads" class="menu-section">
+            <h2>Salatalar</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/coban-salata.jpg" alt="Çoban Salata">
+                    <div class="menu-item-info">
+                        <h3>Çoban Salata</h3>
+                        <p>Domates, salatalık, biber, soğan ve maydanoz ile hazırlanan geleneksel salata</p>
+                    </div>
+                    <div class="price">₺45</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/sevketi-bostan.jpg" alt="Şevketi Bostan">
+                    <div class="menu-item-info">
+                        <h3>Şevketi Bostan</h3>
+                        <p>Zeytinyağlı, sarımsaklı ve limonlu özel salata</p>
+                    </div>
+                    <div class="price">₺40</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/mevsim-salata.jpg" alt="Mevsim Salata">
+                    <div class="menu-item-info">
+                        <h3>Mevsim Salata</h3>
+                        <p>Mevsim sebzeleri ile hazırlanan özel salata</p>
+                    </div>
+                    <div class="price">₺40</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mezes" class="menu-section">
+            <h2>Mezeler</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/humus.jpg" alt="Humus">
+                    <div class="menu-item-info">
+                        <h3>Humus</h3>
+                        <p>Nohut, tahin ve özel baharatlarla hazırlanan geleneksel meze</p>
+                    </div>
+                    <div class="price">₺45</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/muhammara.jpg" alt="Muhammara">
+                    <div class="menu-item-info">
+                        <h3>Muhammara</h3>
+                        <p>Biber, ceviz ve özel baharatlarla hazırlanan geleneksel meze</p>
+                    </div>
+                    <div class="price">₺45</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/ezme.jpg" alt="Acılı Ezme">
+                    <div class="menu-item-info">
+                        <h3>Acılı Ezme</h3>
+                        <p>Domates, biber ve özel baharatlarla hazırlanan geleneksel meze</p>
+                    </div>
+                    <div class="price">₺40</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="beverages" class="menu-section">
+            <h2>İçecekler</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/ayran.jpg" alt="Ayran">
+                    <div class="menu-item-info">
+                        <h3>Ayran</h3>
+                        <p>Ev yapımı taze ayran</p>
+                    </div>
+                    <div class="price">₺15</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/salgam.jpg" alt="Şalgam">
+                    <div class="menu-item-info">
+                        <h3>Şalgam</h3>
+                        <p>Geleneksel şalgam suyu</p>
+                    </div>
+                    <div class="price">₺15</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/limonata.jpg" alt="Limonata">
+                    <div class="menu-item-info">
+                        <h3>Limonata</h3>
+                        <p>Ev yapımı taze limonata</p>
+                    </div>
+                    <div class="price">₺20</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="images/cola.jpg" alt="Kola">
+                    <div class="menu-item-info">
+                        <h3>Kola</h3>
+                        <p>Soğuk içecek</p>
+                    </div>
+                    <div class="price">₺15</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html> 

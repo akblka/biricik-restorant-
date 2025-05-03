@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birecik - Mezeler</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a472a;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .brand-line {
+            width: 200px;
+            height: 2px;
+            background-color: #d4af37;
+            margin: 10px auto;
+        }
+
+        .specialties {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: white;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .menu-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item h3 {
+            margin: 0;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .menu-item img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .price {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Birecik</h1>
+            <div class="brand-line"></div>
+            <p class="specialties">Mezeler</p>
+        </header>
+
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="images/humus.jpg" alt="Humus">
+                <div class="menu-item-info">
+                    <h3>Humus</h3>
+                    <p>Nohut, tahin ve özel baharatlarla hazırlanan geleneksel meze</p>
+                </div>
+                <div class="price">₺45</div>
+            </div>
+
+            <div class="menu-item">
+                <img src="images/muhammara.jpg" alt="Muhammara">
+                <div class="menu-item-info">
+                    <h3>Muhammara</h3>
+                    <p>Biber, ceviz ve özel baharatlarla hazırlanan geleneksel meze</p>
+                </div>
+                <div class="price">₺45</div>
+            </div>
+
+            <div class="menu-item">
+                <img src="images/ezme.jpg" alt="Acılı Ezme">
+                <div class="menu-item-info">
+                    <h3>Acılı Ezme</h3>
+                    <p>Domates, biber ve özel baharatlarla hazırlanan geleneksel meze</p>
+                </div>
+                <div class="price">₺40</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

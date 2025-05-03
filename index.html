@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Birecikli Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a472a;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .brand-line {
+            width: 200px;
+            height: 2px;
+            background-color: #d4af37;
+            margin: 10px auto;
+        }
+
+        .specialties {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: white;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-button {
+            padding: 0;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            background-color: #8b4513;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(139, 69, 19, 0.8);
+            padding: 10px;
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px);
+            background-color: #d4af37;
+        }
+
+        .contact-info {
+            max-width: 1000px;
+            width: 95%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item i {
+            font-size: 1rem;
+        }
+
+        .contact-item span {
+            max-width: 400px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-info {
+                width: 95%;
+                padding: 15px;
+                min-height: 140px;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            background-color: #c19b2e;
+        }
+
+        .chat-button i {
+            color: #1a472a;
+            font-size: 24px;
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        .chat-header {
+            background-color: #d4af37;
+            color: #1a472a;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: #1a472a;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-input {
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .chat-input button {
+            padding: 8px 15px;
+            background-color: #d4af37;
+            color: #1a472a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 15px;
+            margin: 5px 0;
+        }
+
+        .user-message {
+            background-color: #d4af37;
+            color: #1a472a;
+            align-self: flex-end;
+        }
+
+        .bot-message {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            align-self: flex-start;
+        }
+
+        .chat-notification {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 250px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            z-index: 1000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Birecikli</h1>
+            <div class="brand-line"></div>
+            <p class="specialties">Kebap • Lahmacun • Tava</p>
+        </header>
+
+        <div class="content-section">
+            <nav class="buttons-container">
+                <a href="full-menu.html" class="nav-button">
+                    <img src="images/menu.jpg" alt="Menü" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0;">
+                    <span>Menü</span>
+                </a>
+                <a href="rate.html" class="nav-button">
+                    <img src="images/rating.jpg" alt="Değerlendirme" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0;">
+                    <span>Bizi Değerlendirin</span>
+                </a>
+                <a href="reservation.html" class="nav-button">
+                    <img src="images/reservation.png" alt="Rezervasyon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0;">
+                    <span>Rezervasyon</span>
+                </a>
+            </nav>
+        </div>
+
+        <footer class="contact-info">
+            <h2>İletişim Bilgileri</h2>
+            <div class="contact-details">
+                <div class="contact-row">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+90 537 940 3382</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>09.00 - 22.30</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Kayabaşı Mahallesi Adnan Menderes Caddesi Park Mavera 2 Sitesi T.5 Blok 2.A Başakşehir İstanbul</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="chat-button" onclick="toggleChat()">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-notification" id="chatNotification">
+        Merhaba! Ben Birecik, buradayım! 😊
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3>Birecik Asistanı</h3>
+            <button class="close-chat" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">Merhaba! Ben Birecik. Size nasıl yardımcı olabilirim? 😊</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Mesajınızı yazın...">
+            <button onclick="sendChatMessage()">Gönder</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Dakikada bir mesaj göster (sadece chat kapalıyken)
+        function showNotification() {
+            const chatWindow = document.getElementById('chatWindow');
+            const notification = document.getElementById('chatNotification');
+            
+            if (chatWindow.style.display !== 'flex') {
+                notification.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.style.animation = 'fadeOut 0.5s ease';
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                        notification.style.animation = '';
+                    }, 500);
+                }, 3000);
+            }
+        }
+
+        // İlk mesajı göster (sadece chat kapalıyken)
+        if (document.getElementById('chatWindow').style.display !== 'flex') {
+            showNotification();
+        }
+
+        // Her dakika mesaj göster (sadece chat kapalıyken)
+        setInterval(showNotification, 60000);
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.querySelector('.chat-button');
+            const notification = document.getElementById('chatNotification');
+            
+            if (chatWindow.style.display === 'flex') {
+                chatWindow.style.display = 'none';
+                chatButton.style.display = 'flex';
+                notification.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'flex';
+                chatButton.style.display = 'none';
+                notification.style.display = 'none';
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const messagesDiv = document.getElementById('chatMessages');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = msg;
+            messagesDiv.appendChild(userMessage);
+
+            // Bot yanıtı
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                
+                if (msg.toLowerCase().includes('menü')) {
+                    const menuText = menu.map(m => `${m.name} - ${m.price} TL`).join('\n');
+                    botMessage.textContent = `Menümüzde şunlar var:\n${menuText}`;
+                } else if (msg.toLowerCase().includes('merhaba') || msg.toLowerCase().includes('selam')) {
+                    botMessage.textContent = 'Merhaba! Size nasıl yardımcı olabilirim? 😊';
+                } else {
+                    botMessage.textContent = 'Üzgünüm, sadece restoranımızla ilgili konularda yardımcı olabilirim. 😊';
+                }
+                
+                messagesDiv.appendChild(botMessage);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 500);
+
+            input.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Enter tuşu ile mesaj gönderme
+        document.getElementById('chatInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

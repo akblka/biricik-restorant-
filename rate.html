@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birecik - Değerlendir</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .rating-container {
+            max-width: 600px;
+            width: 95%;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-question h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .rating-options {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .rating-option {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .rating-option:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .rating-option.selected {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .rating-container {
+                padding: 1rem;
+            }
+
+            .rating-question {
+                margin-bottom: 1rem;
+            }
+
+            .rating-question h3 {
+                font-size: 1rem;
+            }
+
+            .rating-options {
+                gap: 0.3rem;
+            }
+
+            .rating-option {
+                padding: 0.3rem 0.6rem;
+                min-width: 35px;
+                font-size: 0.9rem;
+            }
+
+            .submit-button {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particles"></div>
+    </div>
+
+    <button class="back-button" onclick="window.location.href='index.html'">← Geri</button>
+
+    <div class="rating-container">
+        <div class="rating-question">
+            <h3>Yemeklerin lezzeti nasıldı?</h3>
+            <div class="rating-options">
+                <div class="rating-option" onclick="selectRating(this, 'lezzet')">1</div>
+                <div class="rating-option" onclick="selectRating(this, 'lezzet')">2</div>
+                <div class="rating-option" onclick="selectRating(this, 'lezzet')">3</div>
+                <div class="rating-option" onclick="selectRating(this, 'lezzet')">4</div>
+                <div class="rating-option" onclick="selectRating(this, 'lezzet')">5</div>
+            </div>
+        </div>
+
+        <div class="rating-question">
+            <h3>Servis kalitesi nasıldı?</h3>
+            <div class="rating-options">
+                <div class="rating-option" onclick="selectRating(this, 'servis')">1</div>
+                <div class="rating-option" onclick="selectRating(this, 'servis')">2</div>
+                <div class="rating-option" onclick="selectRating(this, 'servis')">3</div>
+                <div class="rating-option" onclick="selectRating(this, 'servis')">4</div>
+                <div class="rating-option" onclick="selectRating(this, 'servis')">5</div>
+            </div>
+        </div>
+
+        <div class="rating-question">
+            <h3>Mekanın temizliği nasıldı?</h3>
+            <div class="rating-options">
+                <div class="rating-option" onclick="selectRating(this, 'temizlik')">1</div>
+                <div class="rating-option" onclick="selectRating(this, 'temizlik')">2</div>
+                <div class="rating-option" onclick="selectRating(this, 'temizlik')">3</div>
+                <div class="rating-option" onclick="selectRating(this, 'temizlik')">4</div>
+                <div class="rating-option" onclick="selectRating(this, 'temizlik')">5</div>
+            </div>
+        </div>
+
+        <div class="rating-question">
+            <h3>Fiyat/performans oranı nasıldı?</h3>
+            <div class="rating-options">
+                <div class="rating-option" onclick="selectRating(this, 'fiyat')">1</div>
+                <div class="rating-option" onclick="selectRating(this, 'fiyat')">2</div>
+                <div class="rating-option" onclick="selectRating(this, 'fiyat')">3</div>
+                <div class="rating-option" onclick="selectRating(this, 'fiyat')">4</div>
+                <div class="rating-option" onclick="selectRating(this, 'fiyat')">5</div>
+            </div>
+        </div>
+
+        <button class="submit-button" onclick="submitRating()">Değerlendirmeyi Gönder</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const ratings = {
+            lezzet: 0,
+            servis: 0,
+            temizlik: 0,
+            fiyat: 0
+        };
+
+        function selectRating(element, category) {
+            // Remove selected class from all options in this category
+            const options = element.parentElement.querySelectorAll('.rating-option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Update rating
+            ratings[category] = parseInt(element.textContent);
+        }
+
+        function submitRating() {
+            // Check if all categories are rated
+            const allRated = Object.values(ratings).every(rating => rating > 0);
+            
+            if (!allRated) {
+                alert('Lütfen tüm kategorileri değerlendirin!');
+                return;
+            }
+
+            // Calculate average rating
+            const averageRating = Object.values(ratings).reduce((a, b) => a + b, 0) / 4;
+            
+            // Show thank you message
+            alert(`Değerlendirmeniz için teşekkür ederiz!\nOrtalama puanınız: ${averageRating.toFixed(1)}`);
+            
+            // Reset ratings
+            Object.keys(ratings).forEach(key => ratings[key] = 0);
+            
+            // Remove selected class from all options
+            document.querySelectorAll('.rating-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+        }
+    </script>
+</body>
+</html> 

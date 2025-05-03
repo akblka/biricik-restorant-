@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervasyon - Birecik Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .reservation-form {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #d4af37;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #d4af37;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .reservation-form {
+                padding: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            input, select {
+                padding: 6px;
+            }
+
+            button[type="submit"] {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Birecik</h1>
+            <div class="brand-line"></div>
+            <p class="specialties">Rezervasyon</p>
+        </header>
+
+        <div class="reservation-form">
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="name">Ad Soyad</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Tarih</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Saat</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Kişi Sayısı</label>
+                    <select id="guests" name="guests" required>
+                        <option value="1">1 Kişi</option>
+                        <option value="2">2 Kişi</option>
+                        <option value="3">3 Kişi</option>
+                        <option value="4">4 Kişi</option>
+                        <option value="5">5 Kişi</option>
+                        <option value="6">6 Kişi</option>
+                        <option value="7">7 Kişi</option>
+                        <option value="8">8 Kişi</option>
+                        <option value="9">9 Kişi</option>
+                        <option value="10">10 Kişi</option>
+                    </select>
+                </div>
+                
+                <button type="submit">Rezervasyon Yap</button>
+            </form>
+            
+            <a href="index.html" class="back-button">← Ana Sayfaya Dön</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Rezervasyonunuz alınmıştır. Teşekkür ederiz!');
+            this.reset();
+        });
+    </script>
+</body>
+</html> 
